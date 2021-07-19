@@ -48,17 +48,17 @@
 
                   <div class="form-group">
                     <label for="title">Post Title</label>
-                    <input type="text" class="form-control" name="title" id="exampleInputEmail1" placeholder="Title">
+                    <input type="text" class="form-control" name="title" id="exampleInputEmail1" placeholder="Title"value="{{$post->title}}">
                   </div>
 
                   <div class="form-group">
                     <label for="subtitle">Post Sub-Title</label>
-                    <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Sub-Title">
+                    <input type="text" class="form-control" name="subtitle" id="subtitle" placeholder="Sub-Title"value="{{$post->subtitle}}">
                   </div>
 
                   <div class="form-group">
                     <label for="slug">Post Slug</label>
-                    <input type="text" class="form-control" name="slug" id="subtitle" placeholder="Slug">
+                    <input type="text" class="form-control" name="slug" id="slug" placeholder="Slug"value="{{$post->slug}}">
                   </div>
 
                 </div>
@@ -98,7 +98,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <textarea id="summernote" name="body">
+                  <textarea id="summernote" name="body"value="{{$post->body}}">
                     Place <em>some</em> <u>text</u> <strong>here</strong>
                   </textarea>
                 </div>

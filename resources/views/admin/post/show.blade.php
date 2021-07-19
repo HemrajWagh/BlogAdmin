@@ -46,7 +46,8 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Title</h3>
+            <h3 class="card-title">Posts</h3>
+                <a class="col-lg-offset-5 btn btn-primary" href="{{route('post.create')}}">Add New</a>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -76,19 +77,34 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
 
-                    @if(count($posts>0))
-                      @foreach ($posts as $post)
-                        <td>{{$post->id}}</td>
+                      @foreach($posts as $post)
+                      <tr>
+                        <td>{{$loop->index+1}}</td>
                         <td>{{$post->title}}</td>
-                        <td>{{$post->subtitle}}</td>  
-                        
-                      @endforeach
-                    @endif
+                        <td>{{$post->subtitle}}</td> 
+                        <td><a href="{{route('post.edit',$post->id)}}"><i class="fas fa-edit"></i></a></td>
+                        <td>
+                          <form id="delete-form-{{$post->id}}" action="{{route('post.destroy',$post->id)}}" method="post" style="display:none;">
+                            {{csrf_field()}}
+                            {{method_field('DELETE')}}
+                          </form>
+                          <a href="" onclick="
+                          if(confirm('Are you sure,You want to delete this ?'))
+                            {
+                              event.preventDefault();
+                              document.getElementById('delete-form-{{$post->id}}')
+                              .submit();
+                          }
+                          else
+                            {
+                              event.preventDefault();
+                            }"><i class="fas fa-trash-alt"></i></a>
 
-                  </tr>
-                  
+                        </td> 
+                      </tr>
+                      @endforeach
+                                  
                   </tbody>
                   <tfoot>
                   <tr>
@@ -123,12 +139,7 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-      <div class="float-right d-none d-sm-block">
-        <b>Version</b> 3.1.0
-      </div>
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-    </footer>
+   
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -139,11 +150,6 @@
   <!-- ./wrapper -->
 
 @endsection 
-
-
-
-
-
 
 
 @section('footerSection')
