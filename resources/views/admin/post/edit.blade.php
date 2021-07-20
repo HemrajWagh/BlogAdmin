@@ -36,8 +36,9 @@
 
            @include('includes.massages')
 
-            <form role=form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
+            <form role="form" action="{{route('post.update',$post->id)}}" method="post" enctype="multipart/form-data">
               {{csrf_field()}}
+              {{method_field('PUT')}}
              
               <div class="card-body">
 
@@ -80,8 +81,8 @@
                 <div class="row">
                   <div class="form-check">
                      <div class="col-lg">
-                         <input type="checkbox" class="form-check-input" id="exampleCheck1"><br>
-                         <label class="form-check-label" for="exampleCheck1" name="status">Publish</label>
+                         <input type="checkbox" name="status" @if ($post->status == 1)checked @endif><br>
+                         <label class="form-check-label" for="exampleCheck1" >Publish</label>
                      </div> 
                 </div>
                 
@@ -98,9 +99,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <textarea id="summernote" name="body"value="{{$post->body}}">
-                    Place <em>some</em> <u>text</u> <strong>here</strong>
-                  </textarea>
+                  <textarea id="summernote" name="body">{{$post->body}}</textarea>
                 </div>
                 
               </div>

@@ -89,17 +89,19 @@
                             {{csrf_field()}}
                             {{method_field('DELETE')}}
                           </form>
-                          <a href="" onclick="
-                          if(confirm('Are you sure,You want to delete this ?'))
-                            {
-                              event.preventDefault();
-                              document.getElementById('delete-form-{{$post->id}}')
-                              .submit();
+
+                          <a href="" onclick="if(confirm('Are you sure ? you want to delete this??'))
+                          {
+                          event.preventDefault();                     
+                          document.getElementById('delete-form-{{$post->id}}').submit();
                           }
                           else
-                            {
-                              event.preventDefault();
-                            }"><i class="fas fa-trash-alt"></i></a>
+                          {
+                            event.preventDefault();
+                          }"
+                            
+                             ><i class="far fa-trash-alt"></i></a>
+                          
 
                         </td> 
                       </tr>

@@ -65,7 +65,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category= category::where('id',$id)->first();
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -76,8 +77,17 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $this->validate($request,[
+            'name'=>'required',
+            'slug'=>'required',
+        ]);
+
+        $categories =  category::find($id)->first();
+        $categories->name= $request->name;
+        $categories->slug= $request->slug;
+        $categories->save();
+        return redirect(route('category.index'));
     }
 
     /**
@@ -88,6 +98,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category=category::find($id)->delete();
+        return redirect()->back();
     }
 }

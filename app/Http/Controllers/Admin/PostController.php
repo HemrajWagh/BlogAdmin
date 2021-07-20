@@ -88,20 +88,21 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         
-        // $this->validate($request,[
-        //             'title'=>'required',
-        //             'subtitle'=>'required',
-        //             'slug'=>'required',
-        //             'body'=>'required',
-        //         ]);
+        $this->validate($request,[
+                    'title'=>'required',
+                    'subtitle'=>'required',
+                    'slug'=>'required',
+                    'body'=>'required',
+                ]);
 
-        //         $posts= post->where($id,id) ;
-        //         $posts->title=$request->title;
-        //         $posts->subtitle=$request->subtitle;
-        //         $posts->slug=$request->slug;
-        //         $posts->body=$request->body;
-        //         $posts->save();
-        //         return redirect(route('post.index'),compact('posts'));
+        $posts= post::find($id);
+                $posts->title=$request->title;
+                $posts->subtitle=$request->subtitle;
+                $posts->slug=$request->slug;
+                $posts->body=$request->body;
+                $posts->save();
+                return redirect(route('post.index'));
+
     }
 
     /**
